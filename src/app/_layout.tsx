@@ -28,6 +28,9 @@ export default function RootLayout() {
       >
         <Stack.Screen name="index" />
         <Stack.Screen name="tabs" />
+        <Stack.Screen name="requests/new" />
+        <Stack.Screen name="requests/[requestId]" />
+        <Stack.Screen name="aircraft/[aircraftId]" />
       </Stack>
     </AuthProvider>
   );

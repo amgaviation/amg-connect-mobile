@@ -13,3 +13,6 @@
 - Do not treat mobile route guards as a replacement for Supabase RLS.
 - Do not use user-editable metadata as the final authorization source without AMG backend confirmation.
 - Do not create separate mobile auth, credentials, roles, storage buckets, or storage policies when the portal already defines the shared source.
+- Do not hardcode production request, aircraft, document, quote, invoice, message, or user records in the mobile app.
+- Do not make New Support Request appear submitted to AMG until a confirmed backend mutation or API route is implemented.
+- Do not add request/aircraft queries that fetch broad or global data without confirmed role scope and RLS behavior.

@@ -37,3 +37,30 @@ The current mobile client reads `EXPO_PUBLIC_SUPABASE_URL` and `EXPO_PUBLIC_SUPA
 ## No Backend Changes
 
 Step 2 did not add migrations, tables, views, storage buckets, RLS policies, auth settings, Edge Functions, or API routes.
+
+## Step 3 Frontend Data Contract
+
+Step 3 adds typed frontend adapters for requests and aircraft without changing the backend:
+
+- `RequestSummary`, `RequestDetail`, `RequestStatus`, `SupportType`, `SupportRequestDraft`, and validation helpers live under `src/features/requests/`.
+- `AircraftSummary`, `AircraftDetail`, and `AircraftStatus` live under `src/features/aircraft/`.
+- `RequestActivityItem` lives under `src/features/activity/`.
+- Mapper files accept generic records so future Supabase responses can be normalized after the portal table/field mapping is confirmed.
+
+Step 3 screens use local demo data only:
+
+- `src/features/requests/request.demo.ts`
+- `src/features/aircraft/aircraft.demo.ts`
+
+No real Supabase request, aircraft, document, quote, invoice, message, or storage queries were added. No mutations were added. New Support Request submission is deferred and disabled until AMG confirms the safe request table, fields, storage policy, and RLS path.
+
+Required backend confirmations before live data:
+
+- Request table or API route name
+- Request field mapping for status, support type, route/location, aircraft, timing, contact preference, notes, documents, quotes/invoices, and activity
+- Aircraft table or API route name
+- Aircraft client-scope relationship and RLS behavior
+- Document/storage bucket names and client-safe access policies
+- Whether request creation is direct table insert, RPC, Edge Function, or portal API route
+
+Step 3 did not add migrations, tables, views, storage buckets, RLS policies, auth settings, Edge Functions, API routes, service-role keys, or production data.
