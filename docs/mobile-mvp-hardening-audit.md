@@ -4,8 +4,8 @@
 
 - Branch: `release/mobile-mvp-hardening`
 - Package manager: npm, using `package-lock.json`
-- Expo: `~56.0.12`
-- React Native: `0.85.3`
+- Expo: `~54.0.35`
+- React Native: `0.81.5`
 - Expo Router entry: `expo-router/entry`
 - Router root: `src/app`
 - Primary tabs: Home, Requests, Aircraft, Documents, More
