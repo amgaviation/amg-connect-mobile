@@ -16,3 +16,5 @@
 - Do not hardcode production request, aircraft, document, quote, invoice, message, or user records in the mobile app.
 - Do not make New Support Request appear submitted to AMG until a confirmed backend mutation or API route is implemented.
 - Do not add request/aircraft queries that fetch broad or global data without confirmed role scope and RLS behavior.
+- Do not expose Supabase Storage paths, public file URLs, cross-client documents, internal-only files, or crew credentials unless the portal contract explicitly permits it.
+- Do not add quote approval, invoice payment, card collection, message sending, profile editing, support submission, or push notification delivery without a confirmed safe backend path.

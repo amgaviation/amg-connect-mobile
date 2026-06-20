@@ -1,6 +1,9 @@
 import { colors } from "@/lib/theme/colors";
 
 import type { AircraftStatus } from "@/features/aircraft/aircraft.types";
+import type { DocumentStatus } from "@/features/documents/document.types";
+import type { InvoiceStatus } from "@/features/invoices/invoice.types";
+import type { QuoteStatus } from "@/features/quotes/quote.types";
 import type { RequestStatus } from "@/features/requests/request.types";
 
 export type StatusTone = "info" | "attention" | "success" | "closed" | "danger";
@@ -60,6 +63,35 @@ const aircraftStatusLabels: Record<AircraftStatus, { label: string; tone: Status
   unavailable: { label: "Unavailable", tone: "closed" },
 };
 
+const documentStatusLabels: Record<DocumentStatus, { label: string; tone: StatusTone }> = {
+  archived: { label: "Archived", tone: "closed" },
+  available: { label: "Available", tone: "success" },
+  expired: { label: "Expired", tone: "danger" },
+  missing: { label: "Missing", tone: "attention" },
+  pending_review: { label: "Pending Review", tone: "attention" },
+  updated: { label: "Updated", tone: "info" },
+};
+
+const quoteStatusLabels: Record<QuoteStatus, { label: string; tone: StatusTone }> = {
+  approved: { label: "Approved", tone: "success" },
+  awaiting_review: { label: "Awaiting Review", tone: "attention" },
+  cancelled: { label: "Cancelled", tone: "danger" },
+  declined: { label: "Declined", tone: "danger" },
+  draft: { label: "Draft", tone: "closed" },
+  expired: { label: "Expired", tone: "danger" },
+  sent: { label: "Sent", tone: "info" },
+};
+
+const invoiceStatusLabels: Record<InvoiceStatus, { label: string; tone: StatusTone }> = {
+  cancelled: { label: "Cancelled", tone: "danger" },
+  draft: { label: "Draft", tone: "closed" },
+  due: { label: "Due", tone: "attention" },
+  overdue: { label: "Overdue", tone: "attention" },
+  paid: { label: "Paid", tone: "success" },
+  sent: { label: "Sent", tone: "info" },
+  void: { label: "Void", tone: "closed" },
+};
+
 function toMeta(label: string, tone: StatusTone): StatusMeta {
   return {
     ...toneStyles[tone],
@@ -75,5 +107,20 @@ export function getRequestStatusMeta(status: RequestStatus) {
 
 export function getAircraftStatusMeta(status: AircraftStatus) {
   const meta = aircraftStatusLabels[status];
+  return toMeta(meta.label, meta.tone);
+}
+
+export function getDocumentStatusMeta(status: DocumentStatus) {
+  const meta = documentStatusLabels[status];
+  return toMeta(meta.label, meta.tone);
+}
+
+export function getQuoteStatusMeta(status: QuoteStatus) {
+  const meta = quoteStatusLabels[status];
+  return toMeta(meta.label, meta.tone);
+}
+
+export function getInvoiceStatusMeta(status: InvoiceStatus) {
+  const meta = invoiceStatusLabels[status];
   return toMeta(meta.label, meta.tone);
 }

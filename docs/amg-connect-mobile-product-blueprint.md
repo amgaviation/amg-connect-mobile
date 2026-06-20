@@ -27,6 +27,21 @@ The client MVP now includes production-quality frontend screens for Home, Reques
 
 Current request and aircraft data is local demo data only. The UI is ready for real Supabase adapters, but real queries must wait for confirmed portal table names, fields, RLS scope, and storage rules.
 
+## Step 4 Client MVP Shape
+
+The remaining client-facing MVP surfaces now include Documents, Quotes, Invoices, Messages, More, Profile, Settings, Legal, Support, and notification-ready event definitions.
+
+- Documents provides category cards, search, document rows, and document detail metadata.
+- Quotes and Invoices are read-only financial views with disabled PDF, approval, and payment actions.
+- Messages provides a read-only message center and thread view.
+- More is the secondary navigation hub for Profile, Messages, Quotes, Invoices, Settings, Support, Legal, and Sign Out.
+- Profile is read-only and does not allow role, approval status, or profile edits.
+- Settings shows system appearance, session/app info, legal/support links, and disabled notification preference placeholders.
+- Legal documents the website legal reference set without rewriting or replacing legal policy.
+- Support provides restrained operational support context without promising instant support.
+
+All Step 4 business data is local demo data until AMG confirms portal table/API mapping, Supabase Storage behavior, messaging send workflow, quote/invoice actions, payment handling, and notification infrastructure.
+
 ## Deferred Areas
 
 Crew assignment workflows, operations dashboards, admin review tools, website editor tools, analytics, maps, payments, notifications, and store submission are out of scope for this setup.

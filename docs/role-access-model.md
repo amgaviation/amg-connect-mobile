@@ -37,6 +37,12 @@ Resolution order:
 
 The resolver never uses a service-role key, never queries all users, and never changes backend schema/RLS. Client route guards are not a substitute for Supabase RLS.
 
+## Step 4 Protected Areas
+
+Documents, quotes, invoices, messages, profile, settings, legal, and support routes use the same approved-role guard as the tab experience. These route guards protect mobile UX only; Supabase RLS and storage policies remain the real authorization boundary for future live data.
+
+Profile screens are read-only. Users cannot edit roles, approval status, or profile fields from mobile without a confirmed backend update path. Operations and Super Admin users see a restrained More-tab note, but heavy admin tools and Website Editor remain desktop portal-first.
+
 ## amg1 Legacy Mapping
 
 The read-only `amg1` Wix portal currently uses:

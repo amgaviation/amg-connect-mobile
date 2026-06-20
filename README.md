@@ -95,6 +95,19 @@ Step 3 adds the first client-facing MVP experience:
 
 These screens use local demo data in `src/features/requests/request.demo.ts` and `src/features/aircraft/aircraft.demo.ts`. No real request, aircraft, document, quote, invoice, or storage records are queried or written yet because the AMG Connect backend table/field mapping is not confirmed.
 
+## Remaining Client MVP Areas
+
+Step 4 adds the remaining client-facing MVP surfaces:
+
+- Documents tab, document categories, document list, and document detail
+- Quotes list/detail and invoices list/detail inside the More flow
+- Messages list and read-only message thread detail
+- More tab navigation hub
+- Profile, Settings, Legal, and Support screens
+- Notification-ready event types in `src/lib/notifications/`
+
+These areas use local demo data in `src/features/documents`, `src/features/quotes`, `src/features/invoices`, `src/features/messages`, and `src/features/settings`. Document open/download, quote approval, invoice payment, message send, support submission, profile editing, and mobile notification registration are deferred until AMG confirms the backend, storage, payment, messaging, and notification contracts.
+
 ## Intentionally Not Built Yet
 
 - Real dashboard data flows
@@ -102,5 +115,5 @@ These screens use local demo data in `src/features/requests/request.demo.ts` and
 - Supabase schema, RLS, storage, or migration changes
 - Live tracking
 - Crew availability guarantees
-- Quotes, invoices, messages, notifications, maps, payments, or analytics
+- Live document downloads, quote approvals, invoice payments, message sending, push notifications, maps, payments, or analytics
 - App Store, Play Store, or production EAS setup

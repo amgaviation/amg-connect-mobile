@@ -31,6 +31,17 @@ export default function RootLayout() {
         <Stack.Screen name="requests/new" />
         <Stack.Screen name="requests/[requestId]" />
         <Stack.Screen name="aircraft/[aircraftId]" />
+        <Stack.Screen name="documents/[documentId]" />
+        <Stack.Screen name="quotes/index" />
+        <Stack.Screen name="quotes/[quoteId]" />
+        <Stack.Screen name="invoices/index" />
+        <Stack.Screen name="invoices/[invoiceId]" />
+        <Stack.Screen name="messages/index" />
+        <Stack.Screen name="messages/[threadId]" />
+        <Stack.Screen name="profile/index" />
+        <Stack.Screen name="settings/index" />
+        <Stack.Screen name="legal/index" />
+        <Stack.Screen name="support/index" />
       </Stack>
     </AuthProvider>
   );
