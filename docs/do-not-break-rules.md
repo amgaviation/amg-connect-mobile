@@ -1,0 +1,12 @@
+# Do Not Break Rules
+
+- Do not work on `main` for feature setup.
+- Do not commit secrets.
+- Do not use service-role Supabase keys in mobile code.
+- Do not modify `amg1`.
+- Do not modify the live website.
+- Do not change Supabase schema, auth, RLS, storage policies, or APIs from this repo.
+- Do not create Apple, Google, Expo, GitHub, or Supabase credentials without approval.
+- Do not run production EAS builds or store submissions without approval.
+- Do not invent AMG branding, app icons, logos, backend tables, or role names.
+- Do not present a request, mission, crew assignment, or support path as accepted before AMG review.

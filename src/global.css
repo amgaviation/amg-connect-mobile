@@ -1,0 +1,13 @@
+:root {
+  --font-display:
+    Spline Sans, Inter, ui-sans-serif, system-ui, sans-serif, Apple Color Emoji, Segoe UI Emoji,
+    Segoe UI Symbol, Noto Color Emoji;
+  --font-mono:
+    ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
+  --amg-midnight-navy: #050b14;
+  --amg-deep-blue: #07111f;
+  --amg-accent-blue: #3b82f6;
+  --amg-slate-gray: #9ca3af;
+  --amg-light-gray: #c0c7d1;
+  --amg-white: #ffffff;
+}
