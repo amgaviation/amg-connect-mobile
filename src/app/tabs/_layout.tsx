@@ -1,9 +1,17 @@
-import { Tabs } from "expo-router";
+import { Redirect, Tabs } from "expo-router";
 import { FileText, FolderOpen, Home, Plane, Wrench } from "lucide-react-native";
 
+import { LoadingState } from "@/components/ui/loading-state";
+import { useAuth } from "@/features/auth/useAuth";
+import { canEnterAppTabs, getRouteForAuthState } from "@/lib/auth/route-guards";
 import { colors } from "@/lib/theme/colors";
 
 export default function TabsLayout() {
+  const auth = useAuth();
+
+  if (auth.isLoading) return <LoadingState />;
+  if (!canEnterAppTabs(auth)) return <Redirect href={getRouteForAuthState(auth)} />;
+
   return (
     <Tabs
       screenOptions={{

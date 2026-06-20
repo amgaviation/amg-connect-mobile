@@ -78,3 +78,7 @@ No generated Supabase TypeScript types were found.
 - Final storage buckets and document access policy
 - Final mobile app icon and splash assets
 - Whether partner roles are mobile users or portal-only users
+
+## Step 2 Reference Note
+
+Step 2 used this repository summary and the existing read-only `amg1` findings as the reference baseline. No `amg1` files were modified. No Supabase schema, generated types, or migrations were found in the mobile repo or documented `amg1` reference materials.

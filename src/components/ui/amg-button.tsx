@@ -1,31 +1,52 @@
-import { Pressable, StyleSheet, Text } from "react-native";
+import { ActivityIndicator, Pressable, StyleSheet, Text } from "react-native";
 
 import { colors } from "@/lib/theme/colors";
 import { spacing } from "@/lib/theme/spacing";
 import { typography } from "@/lib/theme/typography";
 
 type AmgButtonProps = {
+  accessibilityLabel?: string;
+  disabled?: boolean;
   label: string;
+  loading?: boolean;
   onPress?: () => void;
-  variant?: "primary" | "secondary";
+  variant?: "primary" | "secondary" | "danger";
 };
 
-export function AmgButton({ label, onPress, variant = "primary" }: AmgButtonProps) {
+export function AmgButton({
+  accessibilityLabel,
+  disabled = false,
+  label,
+  loading = false,
+  onPress,
+  variant = "primary",
+}: AmgButtonProps) {
   const isPrimary = variant === "primary";
+  const isDanger = variant === "danger";
+  const isDisabled = disabled || loading;
 
   return (
     <Pressable
+      accessibilityLabel={accessibilityLabel ?? label}
+      accessibilityState={{ busy: loading, disabled: isDisabled }}
       accessibilityRole="button"
-      onPress={onPress}
+      disabled={isDisabled}
+      onPress={isDisabled ? undefined : onPress}
       style={({ pressed }) => [
         styles.button,
-        isPrimary ? styles.primary : styles.secondary,
+        isPrimary && styles.primary,
+        !isPrimary && !isDanger && styles.secondary,
+        isDanger && styles.danger,
         pressed && styles.pressed,
+        isDisabled && styles.disabled,
       ]}
     >
-      <Text selectable={false} style={[styles.label, isPrimary ? styles.primaryLabel : styles.secondaryLabel]}>
-        {label}
-      </Text>
+      {loading ? <ActivityIndicator color={isPrimary ? colors.amg.white : colors.amg.lightGray} /> : null}
+      {!loading ? (
+        <Text selectable={false} style={[styles.label, isPrimary ? styles.primaryLabel : styles.secondaryLabel]}>
+          {label}
+        </Text>
+      ) : null}
     </Pressable>
   );
 }
@@ -35,6 +56,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
     borderCurve: "continuous",
     borderRadius: 8,
+    flexDirection: "row",
+    gap: spacing[2],
     justifyContent: "center",
     minHeight: 48,
     paddingHorizontal: spacing[4],
@@ -46,6 +69,14 @@ const styles = StyleSheet.create({
     backgroundColor: "transparent",
     borderColor: colors.dark.border,
     borderWidth: StyleSheet.hairlineWidth,
+  },
+  danger: {
+    backgroundColor: "transparent",
+    borderColor: colors.amg.slateGray,
+    borderWidth: StyleSheet.hairlineWidth,
+  },
+  disabled: {
+    opacity: 0.55,
   },
   pressed: {
     opacity: 0.82,

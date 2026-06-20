@@ -1,5 +1,7 @@
 import "react-native-url-polyfill/auto";
+import "react-native-get-random-values";
 
+import * as aesjs from "aes-js";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { createClient, processLock, type SupabaseClient } from "@supabase/supabase-js";
 import { AppState, Platform } from "react-native";
@@ -12,25 +14,60 @@ const supabaseAnonKey = process.env.EXPO_PUBLIC_SUPABASE_ANON_KEY?.trim() ?? "";
 
 const isDevelopment = process.env.NODE_ENV !== "production";
 
+class LargeSecureStore {
+  private async decrypt(key: string, value: string) {
+    const encryptionKeyHex = await getItemAsync(key);
+    if (!encryptionKeyHex) return null;
+
+    const cipher = new aesjs.ModeOfOperation.ctr(
+      aesjs.utils.hex.toBytes(encryptionKeyHex),
+      new aesjs.Counter(1),
+    );
+    const decryptedBytes = cipher.decrypt(aesjs.utils.hex.toBytes(value));
+
+    return aesjs.utils.utf8.fromBytes(decryptedBytes);
+  }
+
+  private async encrypt(key: string, value: string) {
+    const encryptionKey = crypto.getRandomValues(new Uint8Array(256 / 8));
+    const cipher = new aesjs.ModeOfOperation.ctr(encryptionKey, new aesjs.Counter(1));
+    const encryptedBytes = cipher.encrypt(aesjs.utils.utf8.toBytes(value));
+
+    await setItemAsync(key, aesjs.utils.hex.fromBytes(encryptionKey));
+
+    return aesjs.utils.hex.fromBytes(encryptedBytes);
+  }
+
+  async getItem(key: string) {
+    const encrypted = await AsyncStorage.getItem(key);
+    if (!encrypted) return null;
+
+    return this.decrypt(key, encrypted);
+  }
+
+  async removeItem(key: string) {
+    await AsyncStorage.removeItem(key);
+    await deleteItemAsync(key);
+  }
+
+  async setItem(key: string, value: string) {
+    const encrypted = await this.encrypt(key, value);
+    await AsyncStorage.setItem(key, encrypted);
+  }
+}
+
 const supabaseStorage = {
   async getItem(key: string) {
     if (Platform.OS === "web") return AsyncStorage.getItem(key);
-    return getItemAsync(key);
+    return new LargeSecureStore().getItem(key);
   },
   async setItem(key: string, value: string) {
     if (Platform.OS === "web") return AsyncStorage.setItem(key, value);
-
-    if (value.length > 2048 && isDevelopment) {
-      console.warn(
-        "Supabase session value is larger than Expo SecureStore's documented 2048 byte guidance. Validate auth storage before production auth rollout.",
-      );
-    }
-
-    return setItemAsync(key, value);
+    return new LargeSecureStore().setItem(key, value);
   },
   async removeItem(key: string) {
     if (Platform.OS === "web") return AsyncStorage.removeItem(key);
-    return deleteItemAsync(key);
+    return new LargeSecureStore().removeItem(key);
   },
 };
 

@@ -3,6 +3,7 @@ import { StatusBar } from "expo-status-bar";
 import * as SystemUI from "expo-system-ui";
 import { useEffect } from "react";
 
+import { AuthProvider } from "@/features/auth/AuthProvider";
 import { colors } from "@/lib/theme/colors";
 
 export default function RootLayout() {
@@ -11,11 +12,12 @@ export default function RootLayout() {
   }, []);
 
   return (
-    <>
+    <AuthProvider>
       <StatusBar style="light" />
       <Stack
         screenOptions={{
           contentStyle: { backgroundColor: colors.amg.midnightNavy },
+          headerShown: false,
           headerStyle: { backgroundColor: colors.amg.midnightNavy },
           headerTintColor: colors.amg.white,
           headerShadowVisible: false,
@@ -24,11 +26,9 @@ export default function RootLayout() {
           },
         }}
       >
-        <Stack.Screen name="index" options={{ headerShown: false }} />
-        <Stack.Screen name="auth" options={{ headerShown: false }} />
-        <Stack.Screen name="tabs" options={{ headerShown: false }} />
-        <Stack.Screen name="protected" options={{ headerShown: false }} />
+        <Stack.Screen name="index" />
+        <Stack.Screen name="tabs" />
       </Stack>
-    </>
+    </AuthProvider>
   );
 }

@@ -6,8 +6,8 @@ AMG Connect Mobile is the Expo React Native foundation for AMG Aviation Group's 
 
 - Expo React Native with TypeScript
 - Expo Router under `src/app`
-- Supabase client scaffold only
-- Expo SecureStore and AsyncStorage-ready auth storage scaffold
+- Supabase Auth client for mobile sign-in/session handling
+- Expo SecureStore-backed encrypted Supabase session persistence
 - AMG theme tokens in TypeScript
 - lucide-react-native icons
 - EAS-compatible `eas.json`
@@ -42,9 +42,20 @@ EXPO_PUBLIC_APP_ENV=development
 
 Do not commit `.env` or production secrets. Do not use Supabase service-role or secret keys in this mobile app.
 
-## Supabase Plan
+## Auth And Supabase
 
-This repo only scaffolds the mobile Supabase client. Future work must connect to the existing approved AMG Supabase project, import generated TypeScript types, and map roles/storage/RLS to the web portal contract before adding real auth or data flows.
+The app reads only these client-safe environment variables:
+
+```env
+EXPO_PUBLIC_SUPABASE_URL=
+EXPO_PUBLIC_SUPABASE_ANON_KEY=
+```
+
+`src/lib/supabase/client.ts` creates the Supabase client with `persistSession`, `autoRefreshToken`, `detectSessionInUrl: false`, and `processLock`. On native platforms the Supabase session payload is encrypted into AsyncStorage with an AES key stored in Expo SecureStore, matching the current Supabase React Native guidance for session values that can exceed SecureStore's direct storage guidance.
+
+`src/features/auth/AuthProvider.tsx` loads the stored session, verifies the current user with Supabase Auth, subscribes to auth changes, and exposes `useAuth()` for screens.
+
+Role resolution is conservative because the final Supabase role source is not confirmed in this mobile repo. The resolver attempts current-user profile lookups under normal RLS using likely `profiles` and `portal_users` sources, then falls back to metadata. Supabase RLS remains the real data-access boundary; mobile route guards are a UX/access shell, not a backend authorization substitute.
 
 ## EAS Notes
 
@@ -62,17 +73,17 @@ The app uses `amg1` and `https://www.amgaviationgroup.com` as read-only referenc
 
 - Expo app initialized in the repo root
 - `src/app` Expo Router structure
-- Login, reset password, tab placeholders, pending approval, and access denied screens
+- Supabase login, reset password request, tab placeholders, pending approval, and access denied screens
 - AMG theme tokens and role helpers
-- Supabase client scaffold and placeholder database types
+- Supabase client setup, AuthProvider, role resolver, route guards, and placeholder database types
 - EAS config and env example
 - Required product, backend, reference, and guardrail docs
 - Approved public AMG white logo copied from the live website
 
 ## Intentionally Not Built Yet
 
-- Real authentication
-- Backend queries or mutations
+- Full dashboard data flows
+- Backend mutations
 - Supabase schema, RLS, storage, or migration changes
 - Live tracking
 - Crew availability guarantees
