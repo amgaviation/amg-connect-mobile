@@ -13,6 +13,27 @@ const supabaseUrl = process.env.EXPO_PUBLIC_SUPABASE_URL?.trim() ?? "";
 const supabaseAnonKey = process.env.EXPO_PUBLIC_SUPABASE_ANON_KEY?.trim() ?? "";
 
 const isDevelopment = process.env.NODE_ENV !== "production";
+const isWebServerRuntime = Platform.OS === "web" && typeof window === "undefined";
+
+const webServerStorage = {
+  async getItem() {
+    return null;
+  },
+  async removeItem() {},
+  async setItem() {},
+};
+
+const webBrowserStorage = {
+  async getItem(key: string) {
+    return window.localStorage.getItem(key);
+  },
+  async removeItem(key: string) {
+    window.localStorage.removeItem(key);
+  },
+  async setItem(key: string, value: string) {
+    window.localStorage.setItem(key, value);
+  },
+};
 
 class LargeSecureStore {
   private async decrypt(key: string, value: string) {
@@ -58,15 +79,18 @@ class LargeSecureStore {
 
 const supabaseStorage = {
   async getItem(key: string) {
-    if (Platform.OS === "web") return AsyncStorage.getItem(key);
+    if (isWebServerRuntime) return webServerStorage.getItem();
+    if (Platform.OS === "web") return webBrowserStorage.getItem(key);
     return new LargeSecureStore().getItem(key);
   },
   async setItem(key: string, value: string) {
-    if (Platform.OS === "web") return AsyncStorage.setItem(key, value);
+    if (isWebServerRuntime) return webServerStorage.setItem();
+    if (Platform.OS === "web") return webBrowserStorage.setItem(key, value);
     return new LargeSecureStore().setItem(key, value);
   },
   async removeItem(key: string) {
-    if (Platform.OS === "web") return AsyncStorage.removeItem(key);
+    if (isWebServerRuntime) return webServerStorage.removeItem();
+    if (Platform.OS === "web") return webBrowserStorage.removeItem(key);
     return new LargeSecureStore().removeItem(key);
   },
 };
@@ -93,7 +117,7 @@ function createAmgSupabaseClient(): SupabaseClient<Database> | null {
       autoRefreshToken: true,
       detectSessionInUrl: false,
       lock: processLock,
-      persistSession: true,
+      persistSession: !isWebServerRuntime,
       storage: supabaseStorage,
     },
   });
