@@ -47,6 +47,12 @@ For Step 3 frontend export sanity checks, use:
 npx expo export --platform web --output-dir /tmp/amg-connect-mobile-step3-export
 ```
 
+For Step 4 frontend export sanity checks, use:
+
+```bash
+npx expo export --platform web --output-dir /tmp/amg-connect-mobile-step4-export
+```
+
 Do not run production EAS builds or store submissions as part of validation.
 
 ## Step 3 Notes
@@ -54,6 +60,12 @@ Do not run production EAS builds or store submissions as part of validation.
 Client MVP screens currently use local demo data for requests and aircraft. The typed adapters are ready for real Supabase records, but request/aircraft table names, field mapping, RLS scope, and storage/document contracts must be confirmed before adding live queries or mutations.
 
 New Support Request validates frontend fields only. The submit action remains disabled/deferred until AMG confirms whether request creation should use a table insert, RPC, Edge Function, or portal API route.
+
+## Step 4 Notes
+
+Documents, quotes, invoices, messages, profile, settings, legal, support, and notification-ready event types currently use local demo data or authenticated session display only. They do not add live Supabase queries or mutations.
+
+Document open/download, quote approval, invoice payment, message send, profile edit, support submission, and push notification registration remain disabled/deferred until AMG confirms the safe backend, storage, payment, messaging, and notification contracts.
 
 ## EAS
 

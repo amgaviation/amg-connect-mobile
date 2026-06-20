@@ -20,6 +20,20 @@
 
 All Step 3 records are local demo data. They do not expose portal production records and do not write to portal tables.
 
+## Step 4 Implemented Mobile Areas
+
+- Documents: categories, searchable document list, document detail, and disabled open/download actions.
+- Quotes: read-only list/detail with disabled approval and PDF actions.
+- Invoices: read-only list/detail with disabled payment and PDF actions.
+- Messages: read-only message list/thread UI with disabled reply.
+- More: secondary navigation hub with Profile, Messages, Quotes, Invoices, Settings, Support, Legal, and Sign Out.
+- Profile: read-only role-aware account display.
+- Settings: notification-ready preference placeholders, session/app info, and support/legal links.
+- Legal: current website legal reference labels with URL mapping pending.
+- Support: restrained AMG Operations context with in-app contact deferred.
+
+All Step 4 records are local demo data. They do not expose portal production records, cross-client documents/messages, payment details, internal notes, storage URLs, or admin-only data.
+
 ## Portal Areas To Mirror Later
 
 - Dashboard

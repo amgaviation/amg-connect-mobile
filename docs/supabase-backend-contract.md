@@ -64,3 +64,29 @@ Required backend confirmations before live data:
 - Whether request creation is direct table insert, RPC, Edge Function, or portal API route
 
 Step 3 did not add migrations, tables, views, storage buckets, RLS policies, auth settings, Edge Functions, API routes, service-role keys, or production data.
+
+## Step 4 Frontend Data Contract
+
+Step 4 adds frontend-only typed adapters and demo records for these areas:
+
+- Documents: `src/features/documents/document.types.ts`, `document.mappers.ts`, `document.demo.ts`
+- Quotes: `src/features/quotes/quote.types.ts`, `quote.mappers.ts`, `quote.demo.ts`
+- Invoices: `src/features/invoices/invoice.types.ts`, `invoice.mappers.ts`, `invoice.demo.ts`
+- Messages: `src/features/messages/message.types.ts`, `message.mappers.ts`, `message.demo.ts`
+- Profile: `src/features/profile/profile.types.ts`, `profile.mappers.ts`
+- Settings: `src/features/settings/settings.types.ts`, `settings.demo.ts`
+- Notifications: `src/lib/notifications/types.ts`, `events.ts`
+
+No real Supabase document, storage, quote, invoice, payment, message, profile-update, support, or notification queries were added. No mutations were added.
+
+Live integration still requires confirmation of:
+
+- Document metadata source and client scope
+- Supabase Storage bucket names, signed URL behavior, file visibility, and RLS/storage policy behavior
+- Quote and invoice table/API names, field mapping, document/PDF access, quote approval route, and payment policy
+- Messaging thread/message table/API names, read scope, send workflow, and RLS behavior
+- Profile safe update path, if any
+- Support/contact API route, if any
+- Push notification registration, token storage, event routing, and delivery backend
+
+Step 4 did not add migrations, tables, views, storage buckets, storage policies, RLS policies, auth settings, Edge Functions, API routes, payment processing, service-role keys, production push notifications, or production data.
