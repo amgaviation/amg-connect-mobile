@@ -1,6 +1,13 @@
 export type AmgRole = "client" | "crew" | "admin" | "amg_operations" | "super_admin";
 
-export type AmgApprovalStatus = "pending" | "approved" | "denied" | "suspended" | "inactive";
+export type AmgApprovalStatus =
+  | "pending"
+  | "approved"
+  | "denied"
+  | "suspended"
+  | "inactive"
+  | "rejected"
+  | "disabled";
 
 export function isClientRole(role: string | null | undefined): role is "client" {
   return role === "client";
@@ -24,7 +31,7 @@ export function isSuperAdminRole(role: string | null | undefined): role is "supe
 
 export function canAccessMobileApp(
   role: string | null | undefined,
-  approvalStatus: AmgApprovalStatus | null | undefined = "approved",
+  approvalStatus: AmgApprovalStatus | null | undefined,
 ) {
   const hasAllowedRole =
     isClientRole(role) ||
@@ -36,11 +43,27 @@ export function canAccessMobileApp(
   return hasAllowedRole && approvalStatus === "approved";
 }
 
-export function getDefaultRouteForRole(role: string | null | undefined) {
-  if (isClientRole(role)) return "/tabs/home";
-  if (isCrewRole(role)) return "/tabs/home";
-  if (isOperationsRole(role)) return "/tabs/home";
-  if (isAdminRole(role) || isSuperAdminRole(role)) return "/tabs/home";
+export function isPendingApprovalStatus(status: AmgApprovalStatus | null | undefined) {
+  return status === "pending";
+}
+
+export function isDeniedApprovalStatus(status: AmgApprovalStatus | null | undefined) {
+  return (
+    status === "denied" ||
+    status === "suspended" ||
+    status === "inactive" ||
+    status === "rejected" ||
+    status === "disabled"
+  );
+}
+
+export function getDefaultRouteForRole(
+  role: string | null | undefined,
+  approvalStatus: AmgApprovalStatus | null | undefined,
+) {
+  if (isPendingApprovalStatus(approvalStatus)) return "/protected/pending-approval";
+  if (isDeniedApprovalStatus(approvalStatus)) return "/protected/access-denied";
+  if (canAccessMobileApp(role, approvalStatus)) return "/tabs/home";
   return "/protected/access-denied";
 }
 

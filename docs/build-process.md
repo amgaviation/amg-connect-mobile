@@ -11,6 +11,18 @@ npm run web
 npm run lint
 ```
 
+## Auth Setup
+
+Create a local `.env` file from `.env.example`:
+
+```env
+EXPO_PUBLIC_SUPABASE_URL=
+EXPO_PUBLIC_SUPABASE_ANON_KEY=
+EXPO_PUBLIC_APP_ENV=development
+```
+
+Restart the Expo dev server after changing `.env`. Never place a Supabase service-role or secret key in the mobile app.
+
 ## TypeScript
 
 Run:
@@ -18,6 +30,18 @@ Run:
 ```bash
 npx tsc --noEmit
 ```
+
+## Validation
+
+Safe Step 2 validation commands:
+
+```bash
+npx tsc --noEmit
+npm run lint
+npx expo config --json
+```
+
+Do not run production EAS builds or store submissions as part of auth validation.
 
 ## EAS
 

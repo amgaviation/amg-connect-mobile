@@ -30,3 +30,19 @@
 - Whether `super_admin` exists in Supabase or remains portal-only.
 - Whether partner roles should have any mobile access.
 - Whether mobile admin access is allowed in MVP.
+- Exact `portal_users` role and approval-status column names.
+- Whether Supabase stores approval state as `approval_status`, `status`, boolean approval fields, or app metadata.
+
+## Mobile Step 2 Behavior
+
+AMG Connect Mobile now recognizes the target roles directly and maps the Wix-era `amg1` roles for compatibility:
+
+- `client_owner` -> `client`
+- `crew_pilot` -> `crew`
+- `amg_admin` -> `admin`
+- `maintenance_partner` -> `amg_operations`
+- `broker_partner` -> `amg_operations`
+
+Heavy admin, operations, and Website Editor tools remain desktop portal-first. The mobile app only routes approved recognized users into the base tab shell.
+
+The confirmed Supabase role/profile source is `portal_users`. The mobile resolver queries only the current authenticated user's row under existing RLS.

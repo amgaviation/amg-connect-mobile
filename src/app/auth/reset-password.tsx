@@ -1,66 +1,79 @@
 import { useRouter } from "expo-router";
 import { Mail } from "lucide-react-native";
-import { StyleSheet, Text, TextInput, View } from "react-native";
+import { useState } from "react";
+import { StyleSheet, Text } from "react-native";
 
-import { AppScreen } from "@/components/layout/app-screen";
+import { AuthLayout } from "@/components/layout/auth-layout";
 import { AmgButton } from "@/components/ui/amg-button";
+import { AmgTextInput } from "@/components/ui/amg-text-input";
+import { ErrorState } from "@/components/ui/error-state";
 import { InfoCard } from "@/components/ui/info-card";
+import { useAuth } from "@/features/auth/useAuth";
 import { colors } from "@/lib/theme/colors";
-import { spacing } from "@/lib/theme/spacing";
 import { typography } from "@/lib/theme/typography";
 
 export default function ResetPasswordScreen() {
   const router = useRouter();
+  const auth = useAuth();
+  const [email, setEmail] = useState("");
+  const [error, setError] = useState<string | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
+  async function handleReset() {
+    setError(null);
+
+    if (!email.trim()) {
+      setError("Enter your account email.");
+      return;
+    }
+
+    setIsSubmitting(true);
+    const result = await auth.sendPasswordReset(email);
+    setIsSubmitting(false);
+
+    if (!result.ok) {
+      setError(result.error?.message ?? "Unable to send reset instructions.");
+      return;
+    }
+
+    setIsSubmitted(true);
+  }
 
   return (
-    <AppScreen title="Reset Password" description="Password recovery will be connected after the AMG Supabase auth contract is verified.">
+    <AuthLayout title="Reset password" subtitle="Enter the email connected to your AMG Connect account.">
       <InfoCard>
-        <View style={styles.field}>
-          <Text selectable style={styles.label}>
-            Account email
+        {error ? <ErrorState title="Reset unavailable" message={error} /> : null}
+        {isSubmitted ? (
+          <Text accessibilityLiveRegion="polite" selectable style={styles.success}>
+            If an approved account exists for this email, password reset instructions will be sent.
           </Text>
-          <View style={styles.inputWrap}>
-            <Mail size={18} color={colors.amg.slateGray} />
-            <TextInput
-              autoCapitalize="none"
-              editable={false}
-              keyboardType="email-address"
-              placeholder="email@example.com"
-              placeholderTextColor={colors.dark.textMuted}
-              style={styles.input}
-            />
-          </View>
-        </View>
+        ) : null}
 
-        <AmgButton label="Return to login" onPress={() => router.push("/auth/login")} />
+        <AmgTextInput
+          autoCapitalize="none"
+          autoComplete="email"
+          editable={!isSubmitting}
+          keyboardType="email-address"
+          label="Account email"
+          leftIcon={Mail}
+          onChangeText={setEmail}
+          placeholder="email@example.com"
+          textContentType="emailAddress"
+          value={email}
+        />
+
+        <AmgButton label="Send reset instructions" loading={isSubmitting} onPress={handleReset} />
+        <AmgButton label="Back to sign in" variant="secondary" onPress={() => router.push("/auth/login")} />
       </InfoCard>
-    </AppScreen>
+    </AuthLayout>
   );
 }
 
 const styles = StyleSheet.create({
-  field: {
-    gap: spacing[2],
-  },
-  label: {
+  success: {
     color: colors.dark.textSecondary,
-    fontSize: typography.sizes.sm,
-    fontWeight: "600",
-  },
-  inputWrap: {
-    alignItems: "center",
-    backgroundColor: colors.dark.input,
-    borderColor: colors.dark.border,
-    borderRadius: 8,
-    borderWidth: StyleSheet.hairlineWidth,
-    flexDirection: "row",
-    gap: spacing[2],
-    minHeight: 52,
-    paddingHorizontal: spacing[3],
-  },
-  input: {
-    color: colors.dark.text,
-    flex: 1,
     fontSize: typography.sizes.md,
+    lineHeight: 22,
   },
 });
