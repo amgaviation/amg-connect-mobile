@@ -42,6 +42,18 @@ The remaining client-facing MVP surfaces now include Documents, Quotes, Invoices
 
 All Step 4 business data is local demo data until AMG confirms portal table/API mapping, Supabase Storage behavior, messaging send workflow, quote/invoice actions, payment handling, and notification infrastructure.
 
+## Step 5 Hardening Shape
+
+The MVP is prepared for internal review, not store submission:
+
+- Expo/EAS configuration audited.
+- App identifiers documented as placeholders until Apple/Google ownership is confirmed.
+- Icon and splash usage documented as temporary approved-logo placeholders.
+- Demo data audited and marked as non-production.
+- Internal testing checklist added.
+- Validation scripts added for typecheck, lint, Expo Doctor, and web export.
+- Production EAS builds, TestFlight, Google Play submission, backend mutations, and push notifications remain deferred.
+
 ## Deferred Areas
 
 Crew assignment workflows, operations dashboards, admin review tools, website editor tools, analytics, maps, payments, notifications, and store submission are out of scope for this setup.

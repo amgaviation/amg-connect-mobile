@@ -9,7 +9,7 @@ export const demoAircraft: AircraftSummary[] = [
     latestActivity: "Support request under review",
     makeModel: "Citation M2",
     status: "active",
-    tailNumber: "N826AM",
+    tailNumber: "N-DEMO1",
   },
   {
     baseAirport: "KTEB",
@@ -19,7 +19,7 @@ export const demoAircraft: AircraftSummary[] = [
     latestActivity: "Plan review awaiting details",
     makeModel: "Phenom 300",
     status: "review",
-    tailNumber: "N410AG",
+    tailNumber: "N-DEMO2",
   },
 ];
 

@@ -38,3 +38,10 @@ Make code changes only in `amg-connect-mobile`.
 Work in branches and open PRs.
 
 Do not commit secrets.
+
+For release hardening, internal testing, or EAS readiness work:
+
+- Do not run production EAS builds, `eas submit`, TestFlight submission, or Google Play submission without explicit approval.
+- Treat `com.amgaviationgroup.connect` as a configured placeholder until Apple/Google account ownership is confirmed.
+- Keep push notification registration and token storage deferred until the backend notification plan is approved.
+- Keep demo data clearly marked and avoid real client, crew, tail, invoice, quote, document, phone, or email data.

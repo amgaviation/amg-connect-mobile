@@ -43,6 +43,16 @@ Documents, quotes, invoices, messages, profile, settings, legal, and support rou
 
 Profile screens are read-only. Users cannot edit roles, approval status, or profile fields from mobile without a confirmed backend update path. Operations and Super Admin users see a restrained More-tab note, but heavy admin tools and Website Editor remain desktop portal-first.
 
+## Step 5 QA Expectations
+
+Internal testers should verify:
+
+- Approved `client`, `crew`, `admin`, `amg_operations`, and `super_admin` roles can reach the mobile tab shell.
+- Pending users route to Pending Approval.
+- Denied, suspended, inactive, rejected, disabled, unknown, and missing-role users route to Access Denied.
+- Super Admin is recognized without exposing Website Editor or publishing tools on mobile.
+- Admin and operations roles do not expose unsafe mobile mutation tools.
+
 ## amg1 Legacy Mapping
 
 The read-only `amg1` Wix portal currently uses:

@@ -27,3 +27,9 @@ Use green only for true success, amber only for true warning, and red only for d
 ## Brand Assets
 
 Use the approved AMG logo only. The current foundation references `assets/logo/amg-logo-white.png`, downloaded from the public live website path `https://www.amgaviationgroup.com/images/logo-white.png`.
+
+The MVP icon config uses a square padded placeholder generated from the approved white logo on AMG Midnight Navy. Splash config temporarily reuses the approved white logo. Replace them only with final approved AMG app icon and splash assets before store submission. Do not generate substitute logo or icon artwork.
+
+## Accessibility
+
+Primary actions should have clear text labels, form fields need visible labels, status/error text should be readable on dark surfaces, and protected screens must remain scrollable on small devices. Icon-only actions need explicit accessibility labels.

@@ -34,6 +34,10 @@ All Step 3 records are local demo data. They do not expose portal production rec
 
 All Step 4 records are local demo data. They do not expose portal production records, cross-client documents/messages, payment details, internal notes, storage URLs, or admin-only data.
 
+## Step 5 Hardening Notes
+
+The mobile MVP mirrors portal concepts for internal testing only. Desktop portal remains the source for heavy admin, operations, Website Editor, publishing, final quote/payment workflows, and production document storage behavior until AMG confirms safe mobile contracts.
+
 ## Portal Areas To Mirror Later
 
 - Dashboard

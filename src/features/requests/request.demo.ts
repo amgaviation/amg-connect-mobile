@@ -18,7 +18,7 @@ export const demoRequests: RequestSummary[] = [
     shortContext: "Crew coordination and route support under review.",
     status: "under_review",
     supportType: "Crew Coordination",
-    tailNumber: "N826AM",
+    tailNumber: "N-DEMO1",
   },
   {
     aircraftId: "demo-aircraft-phenom-300",
@@ -33,7 +33,7 @@ export const demoRequests: RequestSummary[] = [
     shortContext: "Plan review awaiting timing and crew detail confirmation.",
     status: "awaiting_details",
     supportType: "Plan Review",
-    tailNumber: "N410AG",
+    tailNumber: "N-DEMO2",
   },
   {
     aircraftId: "demo-aircraft-citation-m2",
@@ -47,7 +47,7 @@ export const demoRequests: RequestSummary[] = [
     shortContext: "Aircraft support request closed after AMG review.",
     status: "closed",
     supportType: "Aircraft Support",
-    tailNumber: "N826AM",
+    tailNumber: "N-DEMO1",
   },
 ];
 

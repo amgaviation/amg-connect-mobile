@@ -8,7 +8,10 @@ npm run start
 npm run ios
 npm run android
 npm run web
+npm run typecheck
 npm run lint
+npm run doctor
+npm run export:web
 ```
 
 ## Auth Setup
@@ -36,9 +39,10 @@ npx tsc --noEmit
 Safe validation commands:
 
 ```bash
-npx tsc --noEmit
+npm run typecheck
 npm run lint
 npx expo config --json
+npm run export:web
 ```
 
 For Step 3 frontend export sanity checks, use:
@@ -54,6 +58,8 @@ npx expo export --platform web --output-dir /tmp/amg-connect-mobile-step4-export
 ```
 
 Do not run production EAS builds or store submissions as part of validation.
+
+Use `npx expo-doctor` or `npm run doctor` for Expo dependency/configuration checks. If the command requires interactive login or proposes account actions, stop and document the blocker.
 
 ## Step 3 Notes
 
@@ -86,3 +92,24 @@ npx eas-cli@latest init
 ```
 
 Do not submit to App Store or Google Play from this repo setup task.
+
+## Internal Testing
+
+Internal testing preparation lives in `docs/internal-testing-checklist.md`.
+
+Future approved internal builds:
+
+```bash
+eas build --profile development --platform ios
+eas build --profile preview --platform ios
+eas build --profile preview --platform android
+```
+
+Future production commands must remain documentation-only until explicitly approved:
+
+```bash
+eas build --profile production --platform ios
+eas build --profile production --platform android
+eas submit --profile production --platform ios
+eas submit --profile production --platform android
+```
