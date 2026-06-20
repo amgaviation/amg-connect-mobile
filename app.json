@@ -43,6 +43,13 @@
     "experiments": {
       "typedRoutes": true,
       "reactCompiler": true
-    }
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "f595136d-8b86-49c2-8478-8c171f37208f"
+      }
+    },
+    "owner": "amgaviations-team"
   }
 }
