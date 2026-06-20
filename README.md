@@ -70,6 +70,8 @@ Role resolution uses `portal_users` as the confirmed primary source. The resolve
 
 ## EAS Notes
 
+The repo is linked to Expo project `@amgaviation/amgmobile` with EAS project ID `904a6d9f-40ad-48fe-b6a2-f92cc53abd74`. `app.json` must keep `owner`, `slug`, and `extra.eas.projectId` aligned with that project so GitHub-triggered EAS builds do not fail with a project ID mismatch.
+
 `eas.json` includes `development`, `preview`, and `production` profiles. The configured bundle/package identifiers are placeholders until Apple/Google ownership is confirmed:
 
 - iOS: `com.amgaviationgroup.connect`
