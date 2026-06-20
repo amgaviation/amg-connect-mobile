@@ -82,10 +82,23 @@ The app uses `amg1` and `https://www.amgaviationgroup.com` as read-only referenc
 - Required product, backend, reference, and guardrail docs
 - Approved public AMG white logo copied from the live website
 
+## Client MVP Screens
+
+Step 3 adds the first client-facing MVP experience:
+
+- Home dashboard with support activity summary, primary aircraft, recent activity, and request CTA
+- Requests list with search, status filters, demo request cards, loading/error/empty states, and request-detail navigation
+- Request detail with overview, aircraft, timing, AMG review context, documents preview, quote/invoice preview, updates, next action, and operational context
+- New Support Request UI with frontend validation and a disabled/deferred submit path
+- Aircraft list with search, demo aircraft cards, loading/error/empty states, and aircraft-detail navigation
+- Aircraft detail with profile, base, documents preview, recent support activity, and aircraft-scoped request CTA
+
+These screens use local demo data in `src/features/requests/request.demo.ts` and `src/features/aircraft/aircraft.demo.ts`. No real request, aircraft, document, quote, invoice, or storage records are queried or written yet because the AMG Connect backend table/field mapping is not confirmed.
+
 ## Intentionally Not Built Yet
 
-- Full dashboard data flows
-- Backend mutations
+- Real dashboard data flows
+- Backend mutations or live support request submission
 - Supabase schema, RLS, storage, or migration changes
 - Live tracking
 - Crew availability guarantees

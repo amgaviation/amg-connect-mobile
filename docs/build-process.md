@@ -33,7 +33,7 @@ npx tsc --noEmit
 
 ## Validation
 
-Safe Step 2 validation commands:
+Safe validation commands:
 
 ```bash
 npx tsc --noEmit
@@ -41,7 +41,19 @@ npm run lint
 npx expo config --json
 ```
 
-Do not run production EAS builds or store submissions as part of auth validation.
+For Step 3 frontend export sanity checks, use:
+
+```bash
+npx expo export --platform web --output-dir /tmp/amg-connect-mobile-step3-export
+```
+
+Do not run production EAS builds or store submissions as part of validation.
+
+## Step 3 Notes
+
+Client MVP screens currently use local demo data for requests and aircraft. The typed adapters are ready for real Supabase records, but request/aircraft table names, field mapping, RLS scope, and storage/document contracts must be confirmed before adding live queries or mutations.
+
+New Support Request validates frontend fields only. The submit action remains disabled/deferred until AMG confirms whether request creation should use a table insert, RPC, Edge Function, or portal API route.
 
 ## EAS
 

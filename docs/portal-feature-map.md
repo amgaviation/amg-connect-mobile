@@ -9,6 +9,17 @@
 - More
 - Profile/account status
 
+## Step 3 Implemented Mobile Areas
+
+- Home: client support summary, demo active requests, primary aircraft, recent activity, and support CTA.
+- Requests: searchable/filterable client request list with request cards.
+- Request Detail: overview, aircraft, timing, AMG review, documents preview, quote/invoice preview, updates, next action, and quiet operational context.
+- New Support Request: validated frontend intake UI with disabled/deferred submission.
+- Aircraft: searchable aircraft list with client-safe aircraft cards.
+- Aircraft Detail: aircraft profile, base, documents preview, recent support activity, and aircraft-scoped support CTA.
+
+All Step 3 records are local demo data. They do not expose portal production records and do not write to portal tables.
+
 ## Portal Areas To Mirror Later
 
 - Dashboard
