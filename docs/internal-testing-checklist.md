@@ -10,23 +10,31 @@
 
 ## Physical Device Testing
 
-1. Start Expo with `npm run start`.
+1. Start Expo Go with `npm run start` or `npm run start:go`.
 2. Scan the QR code in Expo Go for basic JavaScript/runtime validation.
 3. Use an EAS development build for any native behavior not supported by Expo Go.
 4. Do not submit to TestFlight or Google Play from this checklist.
 
 ## Expo Go Limitations
 
+- Expo Go is the default local script target.
 - Expo Go is suitable for route, UI, auth, and demo-data review.
 - Production push notifications are not enabled.
 - Store credentials, Apple entitlements, Google Play signing, and production submissions are out of scope.
 
 ## Development Build Notes
 
+Run Metro for an installed development build with:
+
+```bash
+npm run start:dev-client
+```
+
 Future command when account access and credentials are approved:
 
 ```bash
 eas build --profile development --platform ios
+eas build --profile development --platform android
 ```
 
 Preview/internal distribution commands for later:

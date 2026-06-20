@@ -21,11 +21,17 @@ npm install
 npm run start
 ```
 
+`npm run start` is configured for Expo Go. Because the repo also includes `expo-dev-client` for EAS development builds, use the explicit dev-client scripts when testing an installed development build.
+
 Common Expo commands:
 
 ```bash
+npm run start:go
+npm run start:dev-client
 npm run ios
+npm run ios:dev-client
 npm run android
+npm run android:dev-client
 npm run web
 npm run typecheck
 npm run lint
@@ -75,6 +81,7 @@ Future internal testing commands after account access is approved:
 
 ```bash
 eas build --profile development --platform ios
+eas build --profile development --platform android
 eas build --profile preview --platform ios
 eas build --profile preview --platform android
 ```

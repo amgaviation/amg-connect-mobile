@@ -37,9 +37,13 @@
     "typescript": "~6.0.3"
   },
   "scripts": {
-    "start": "expo start",
-    "android": "expo start --android",
-    "ios": "expo start --ios",
+    "start": "expo start --go",
+    "start:go": "expo start --go",
+    "start:dev-client": "expo start --dev-client",
+    "android": "expo start --android --go",
+    "android:dev-client": "expo start --android --dev-client",
+    "ios": "expo start --ios --go",
+    "ios:dev-client": "expo start --ios --dev-client",
     "web": "expo start --web",
     "typecheck": "tsc --noEmit",
     "doctor": "npx --yes expo-doctor",
