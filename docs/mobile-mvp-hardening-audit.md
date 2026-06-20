@@ -17,7 +17,9 @@
 - EAS config: `eas.json`
 - TypeScript config: `tsconfig.json`
 - App name: `AMG Connect`
-- Slug: `amg-connect-mobile`
+- Slug: `amgmobile`
+- Expo project: `@amgaviation/amgmobile`
+- EAS project ID: `904a6d9f-40ad-48fe-b6a2-f92cc53abd74`
 - iOS bundle identifier placeholder: `com.amgaviationgroup.connect`
 - Android package placeholder: `com.amgaviationgroup.connect`
 - EAS profiles: `development`, `preview`, `production`

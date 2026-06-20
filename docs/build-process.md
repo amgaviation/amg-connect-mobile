@@ -102,6 +102,13 @@ Document open/download, quote approval, invoice payment, message send, profile e
 
 ## EAS
 
+Canonical Expo project:
+
+- Full name: `@amgaviation/amgmobile`
+- EAS project ID: `904a6d9f-40ad-48fe-b6a2-f92cc53abd74`
+
+Keep `app.json` `owner`, `slug`, and `extra.eas.projectId` aligned with this project. A mismatch between the committed app config and the GitHub-connected Expo project will fail EAS builds before the native build starts.
+
 `eas.json` includes:
 
 - `development`
