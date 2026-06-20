@@ -31,5 +31,12 @@ Before production notifications are enabled, AMG needs a reviewed backend design
 - Opt-in/opt-out preference storage
 - Message/document/quote/invoice visibility checks before dispatch
 - Audit logging and privacy handling
+- Expo push credentials and permission prompt timing
+- Token rotation handling on sign out and account changes
+- Role-aware routing from notification taps into protected app screens
 
 Do not add token registration, push delivery, notification tables, webhooks, Edge Functions, or production notification tests from the mobile repo until this design is approved.
+
+## MVP Hardening Status
+
+`eas.json` sets `promptToConfigurePushNotifications` to `false` so EAS does not prompt for push notification setup during MVP hardening. Notification preferences remain disabled placeholders in Settings.

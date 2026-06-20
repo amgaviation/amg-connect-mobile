@@ -4,25 +4,25 @@
     "slug": "amg-connect-mobile",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/logo/amg-logo-white.png",
+    "icon": "./assets/icons/amg-icon-placeholder.png",
     "scheme": "amgconnect",
     "userInterfaceStyle": "automatic",
     "ios": {
       "bundleIdentifier": "com.amgaviationgroup.connect",
-      "icon": "./assets/logo/amg-logo-white.png"
+      "icon": "./assets/icons/amg-icon-placeholder.png"
     },
     "android": {
       "package": "com.amgaviationgroup.connect",
       "adaptiveIcon": {
         "backgroundColor": "#050B14",
-        "foregroundImage": "./assets/logo/amg-logo-white.png",
-        "monochromeImage": "./assets/logo/amg-logo-white.png"
+        "foregroundImage": "./assets/icons/amg-icon-placeholder.png",
+        "monochromeImage": "./assets/icons/amg-icon-placeholder.png"
       },
       "predictiveBackGestureEnabled": false
     },
     "web": {
       "output": "static",
-      "favicon": "./assets/logo/amg-logo-white.png"
+      "favicon": "./assets/icons/amg-icon-placeholder.png"
     },
     "plugins": [
       "expo-router",

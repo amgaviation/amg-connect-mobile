@@ -27,7 +27,10 @@ Common Expo commands:
 npm run ios
 npm run android
 npm run web
+npm run typecheck
 npm run lint
+npm run doctor
+npm run export:web
 ```
 
 ## Environment
@@ -61,7 +64,20 @@ Role resolution uses `portal_users` as the confirmed primary source. The resolve
 
 ## EAS Notes
 
-`eas.json` includes `development`, `preview`, and `production` profiles. EAS login, project initialization, credentials, native builds, and store submission are intentionally not run in this setup task.
+`eas.json` includes `development`, `preview`, and `production` profiles. The configured bundle/package identifiers are placeholders until Apple/Google ownership is confirmed:
+
+- iOS: `com.amgaviationgroup.connect`
+- Android: `com.amgaviationgroup.connect`
+
+EAS login, credentials, native builds, production builds, TestFlight submission, Google Play submission, and `eas submit` are intentionally not run from the MVP hardening branch.
+
+Future internal testing commands after account access is approved:
+
+```bash
+eas build --profile development --platform ios
+eas build --profile preview --platform ios
+eas build --profile preview --platform android
+```
 
 ## Branch Workflow
 
@@ -70,6 +86,10 @@ Work in feature branches and open pull requests. This foundation was built on `s
 ## Relationship To AMG Website And Portal
 
 The app uses `amg1` and `https://www.amgaviationgroup.com` as read-only references. The mobile app should mirror AMG Connect concepts such as requests, aircraft, documents, quotes/invoices, messages, account access, and role-scoped visibility without copying Wix/website components directly.
+
+## Brand Assets
+
+The app keeps `assets/logo/amg-logo-white.png`, the approved public AMG white logo. The current Expo icon configuration uses `assets/icons/amg-icon-placeholder.png`, a square padded placeholder generated from that approved logo on AMG Midnight Navy so Expo validation can pass. Splash configuration still uses the approved white logo. Final app icon and splash artwork still require AMG approval before App Store or Google Play submission.
 
 ## Built In This Foundation
 
@@ -107,6 +127,17 @@ Step 4 adds the remaining client-facing MVP surfaces:
 - Notification-ready event types in `src/lib/notifications/`
 
 These areas use local demo data in `src/features/documents`, `src/features/quotes`, `src/features/invoices`, `src/features/messages`, and `src/features/settings`. Document open/download, quote approval, invoice payment, message send, support submission, profile editing, and mobile notification registration are deferred until AMG confirms the backend, storage, payment, messaging, and notification contracts.
+
+## MVP Hardening
+
+Step 5 prepares the MVP for internal review:
+
+- Validation scripts: `typecheck`, `lint`, `doctor`, `export:web`
+- EAS push-notification setup prompt disabled while notifications are deferred
+- Internal testing checklist in `docs/internal-testing-checklist.md`
+- Hardening audit in `docs/mobile-mvp-hardening-audit.md`
+- Demo tail numbers changed to obvious non-production values
+- No production EAS builds, store submission, backend changes, or secrets
 
 ## Intentionally Not Built Yet
 

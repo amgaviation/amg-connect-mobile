@@ -15,11 +15,13 @@
 
 - The mobile repo has no Supabase credentials.
 - The mobile repo has no migrations or schema changes.
+- The mobile repo uses only client-safe Supabase public environment variable names.
 - Supabase client setup now supports auth/session persistence using client-safe env vars only.
 - The primary mobile role/profile source is confirmed as `portal_users`.
 - Mobile auth, credentials, roles, and future storage access must match the existing AMG portal Supabase setup.
 - The Step 2 implementation does not use service-role keys.
 - The Step 2 implementation does not change backend schema, RLS, storage policies, auth settings, or API behavior.
+- Steps 3-5 add frontend/demo-data screens and hardening only; they do not add backend mutations.
 - `amg1` did not expose Supabase generated types or schema files.
 
 ## Unverified
@@ -32,6 +34,7 @@
 - Quote/invoice model
 - Message model
 - Notification model
+- Push token registration/storage model
 
 ## Step 2 Role Source
 

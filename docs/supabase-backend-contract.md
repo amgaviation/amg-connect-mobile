@@ -90,3 +90,48 @@ Live integration still requires confirmation of:
 - Push notification registration, token storage, event routing, and delivery backend
 
 Step 4 did not add migrations, tables, views, storage buckets, storage policies, RLS policies, auth settings, Edge Functions, API routes, payment processing, service-role keys, production push notifications, or production data.
+
+## Step 5 Hardening Confirmation
+
+Current confirmed backend behavior:
+
+- Supabase Auth is the real sign-in/session source.
+- `portal_users` is the confirmed primary mobile role/profile source.
+- Mobile uses only `EXPO_PUBLIC_SUPABASE_URL` and `EXPO_PUBLIC_SUPABASE_ANON_KEY`.
+
+Current unconfirmed backend mapping:
+
+- Exact `portal_users` role/status column names.
+- Request and aircraft production table/API mapping.
+- Document metadata and Supabase Storage bucket/policy mapping.
+- Quote/invoice table/API mapping and PDF access.
+- Messaging thread/message read and send model.
+- Notification token storage and delivery model.
+
+Screens currently using demo data:
+
+- Home summaries
+- Requests and request details
+- Aircraft and aircraft details
+- Documents and document details
+- Quotes and quote details
+- Invoices and invoice details
+- Messages and message threads
+- Settings notification preferences
+
+Live mutations:
+
+- Supabase Auth sign in, local sign out, session refresh, and password reset request.
+
+Deferred mutations:
+
+- Support request creation
+- Document upload/open/download
+- Quote approval
+- Invoice payment
+- Message sending
+- Profile editing
+- Support/contact submission
+- Push token registration and notification delivery
+
+No backend schema, RLS, storage policy, auth configuration, Edge Function, API route, migration, service-role key, or production data change was made from the mobile repo during MVP hardening.

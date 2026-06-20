@@ -18,3 +18,5 @@
 - Do not add request/aircraft queries that fetch broad or global data without confirmed role scope and RLS behavior.
 - Do not expose Supabase Storage paths, public file URLs, cross-client documents, internal-only files, or crew credentials unless the portal contract explicitly permits it.
 - Do not add quote approval, invoice payment, card collection, message sending, profile editing, support submission, or push notification delivery without a confirmed safe backend path.
+- Do not run production EAS builds, `eas submit`, TestFlight submission, Google Play submission, Apple credential setup, or Google Play credential setup without explicit approval.
+- Do not replace icon or splash assets with generated or unapproved artwork.
