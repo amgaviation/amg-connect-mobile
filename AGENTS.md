@@ -45,3 +45,19 @@ For release hardening, internal testing, or EAS readiness work:
 - Treat `com.amgaviationgroup.connect` as a configured placeholder until Apple/Google account ownership is confirmed.
 - Keep push notification registration and token storage deferred until the backend notification plan is approved.
 - Keep demo data clearly marked and avoid real client, crew, tail, invoice, quote, document, phone, or email data.
+
+## Codex Cloud Workflow
+
+- GitHub repository `amgaviation/amg-connect-mobile` is the source of truth.
+- Codex must not rely on local MacBook files.
+- npm is the package manager because `package-lock.json` is present.
+- Use `npm ci` for clean validation.
+- Every coding task should use a separate branch or Codex PR workflow.
+- Required checks before completion are:
+  - `npm run lint`
+  - `npm run typecheck`
+  - `npm run export:web`
+- Do not commit `.env` files, credentials, generated native folders, `node_modules`, Expo output, or build artifacts.
+- Do not run production EAS builds or submissions without explicit approval.
+- Preserve existing app behavior unless the task explicitly authorizes changes.
+- Save completed work through Codex’s PR workflow before usage runs out.
