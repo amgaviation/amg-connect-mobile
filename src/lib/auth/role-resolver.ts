@@ -32,16 +32,16 @@ type ProfileLookup = {
 
 const profileSources: ProfileSource[] = [
   {
-    approvalSource: "profiles",
-    matchColumns: ["id", "user_id", "auth_user_id"],
-    roleSource: "profiles",
-    table: "profiles",
-  },
-  {
     approvalSource: "portal_users",
     matchColumns: ["user_id", "auth_user_id", "id"],
     roleSource: "portal_users",
     table: "portal_users",
+  },
+  {
+    approvalSource: "profiles",
+    matchColumns: ["id", "user_id", "auth_user_id"],
+    roleSource: "profiles",
+    table: "profiles",
   },
 ];
 

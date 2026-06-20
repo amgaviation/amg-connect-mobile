@@ -53,9 +53,11 @@ EXPO_PUBLIC_SUPABASE_ANON_KEY=
 
 `src/lib/supabase/client.ts` creates the Supabase client with `persistSession`, `autoRefreshToken`, `detectSessionInUrl: false`, and `processLock`. On native platforms the Supabase session payload is encrypted into AsyncStorage with an AES key stored in Expo SecureStore, matching the current Supabase React Native guidance for session values that can exceed SecureStore's direct storage guidance.
 
+Mobile uses the same Supabase Auth project, client credential model, role source, and future storage policy model as the AMG Connect portal. Do not create a separate mobile auth system, role store, credential set, or storage policy layer.
+
 `src/features/auth/AuthProvider.tsx` loads the stored session, verifies the current user with Supabase Auth, subscribes to auth changes, and exposes `useAuth()` for screens.
 
-Role resolution is conservative because the final Supabase role source is not confirmed in this mobile repo. The resolver attempts current-user profile lookups under normal RLS using likely `profiles` and `portal_users` sources, then falls back to metadata. Supabase RLS remains the real data-access boundary; mobile route guards are a UX/access shell, not a backend authorization substitute.
+Role resolution uses `portal_users` as the confirmed primary source. The resolver queries only the current user's row under normal RLS, then falls back to `profiles` and metadata compatibility sources while exact field names are finalized. Supabase RLS remains the real data-access boundary; mobile route guards are a UX/access shell, not a backend authorization substitute.
 
 ## EAS Notes
 

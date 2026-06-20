@@ -12,3 +12,4 @@
 - Do not present a request, mission, crew assignment, or support path as accepted before AMG review.
 - Do not treat mobile route guards as a replacement for Supabase RLS.
 - Do not use user-editable metadata as the final authorization source without AMG backend confirmation.
+- Do not create separate mobile auth, credentials, roles, storage buckets, or storage policies when the portal already defines the shared source.
